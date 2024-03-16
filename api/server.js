@@ -7,6 +7,7 @@ const db = JSON.parse(fs.readFileSync(path.join(__dirname, "../db.json")));
 const router = jsonServer.router(db);
 const middlewares = jsonServer.defaults();
 
+var cors = require('cors')
 server.use(middlewares);
 // Add this before server.use(router)
 server.use(
@@ -19,6 +20,8 @@ server.use(router);
 server.listen(3000, () => {
     console.log("JSON Server is running");
 });
+
+server.use(cors()) // Use this after the variable declaration
 
 // Export the Server API
 module.exports = server;
